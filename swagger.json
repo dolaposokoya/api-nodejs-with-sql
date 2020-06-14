@@ -1,0 +1,553 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Blood Bank",
+        "description": "Manage the Api",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:4000",
+    "basePath": "",
+    "tags": [],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/user/blood-all-group": {
+            "get": {
+                "summary": "Select blood",
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/user/create-user": {
+            "post": {
+                "summary": "User Inserted",
+                "tags": [
+                    "User"
+                ],
+                "consumes": "application/json",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "fname",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "lname",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "image",
+                        "type": "file"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "mobile",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "age",
+                        "in": "formData",
+                        "type": "number"
+                    },
+                    {
+                        "name": "gender",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "type": "password"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/user/login-user": {
+            "post": {
+                "summary": "Login User",
+                "tags": [
+                    "User"
+                ],
+                "consumes": "multipart/form-data",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "description": "update an Employee detail",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/user/forget-password": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "description": "forget password",
+                        "schema": {
+                            "$ref": "#/definitions/updatepassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/user/get-user": {
+            "get": {
+                "summary": "Select Employee",
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/user/get-user-by-id/{user_id}": {
+            "tags": [
+                "User"
+            ],
+            "parameters": [
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "required": true
+                },
+                {
+                    "name": "user_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of User that we want to select",
+                    "type": "number"
+                }
+            ],
+            "get": {
+                "summary": "Select User",
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/user/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of Employee that we want to delete",
+                        "type": "string"
+                    }
+                ],
+                "summary": "Delete detail one-by-one of Employee!",
+                "responses": {
+                    "200": {
+                        "description": "Deleted"
+                    }
+                }
+            }
+        },
+        "/donate/donating-blood": {
+            "parameters": [
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "required": true
+                }
+            ],
+            "post": {
+                "tags": [
+                    "Donate Blood"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "description": "Donate Blood",
+                        "schema": {
+                            "$ref": "#/definitions/donateblood"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/request/create-request": {
+            "parameters": [
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "required": true
+                }
+            ],
+            "post": {
+                "tags": [
+                    "Request Blood"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "description": "Request Blood",
+                        "schema": {
+                            "$ref": "#/definitions/requestblood"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/request/update-request-by-id/{request_id}": {
+            "parameters": [
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "required": true
+                }
+            ],
+            "put": {
+                "tags": [
+                    "Request Blood"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "description": "Update Request",
+                        "schema": {
+                            "$ref": "#/definitions/requestblood"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/request/get-request-by-id/{request_id}": {
+            "tags": [
+                "Request Blood"
+            ],
+            "parameters": [
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "required": true
+                },
+                {
+                    "name": "request_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of Request that we want to select",
+                    "type": "number"
+                }
+            ],
+            "get": {
+                "summary": "Select Request",
+                "tags": [
+                    "Request Blood"
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": [
+                "fname",
+                "lname",
+                "username",
+                "image",
+                "email",
+                "mobile",
+                "age",
+                "gender",
+                "password",
+                "weight",
+                "bgroup"
+            ],
+            "properties": {
+                "fname": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "lname": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "username": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "image": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "email": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "mobile": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "age": {
+                    "type": "number",
+                    "uniqueItems": false
+                },
+                "gender": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "password": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "weight": {
+                    "type": "number",
+                    "uniqueItems": false
+                },
+                "bgroup": {
+                    "type": "string",
+                    "uniqueItems": false
+                }
+            }
+        },
+        "updatepassword": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "uniqueItems": "false"
+                },
+                "password": {
+                    "type": "string",
+                    "uniqueItems": "false"
+                }
+            }
+        },
+        "login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "uniqueItems": "false"
+                },
+                "password": {
+                    "type": "string",
+                    "uniqueItems": "false"
+                }
+
+            }
+        },
+        "requestblood": {
+            "required": [
+                "pname",
+                "blood",
+                "city",
+                "hname",
+                "haddress",
+                "state",
+                "dname",
+                "hmobile",
+                "pincode",
+                "pmobile",
+                "date",
+                "message"
+            ],
+            "properties": {
+                "pname": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "blood": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "city": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "hname": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "haddress": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "state": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "dname": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "hmobile": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "pincode": {
+                    "type": "number",
+                    "uniqueItems": false
+                },
+                "pmobile": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "date": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "message": {
+                    "type": "string",
+                    "uniqueItems": false
+                }
+            }
+        },
+        "donateblood": {
+            "required": [
+                "donor_name",
+                "hos_name",
+                "age",
+                "gender",
+                "weight",
+                "mobile",
+                "date"
+            ],
+            "properties": {
+                "donor_name": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "hos_name": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "age": {
+                    "type": "number",
+                    "uniqueItems": false
+                },
+                "gender": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "weight": {
+                    "type": "number",
+                    "uniqueItems": false
+                },
+                "mobile": {
+                    "type": "string",
+                    "uniqueItems": false
+                },
+                "date": {
+                    "type": "string",
+                    "uniqueItems": false
+                }
+            }
+        }
+    }
+}
